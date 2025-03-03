@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Summary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white rounded-3xl shadow-lg flex w-[800px]">
+      <!-- Sidebar -->
+      <div
+        class="w-[274px] bg-gradient-to-b from-indigo-600 to-indigo-700 rounded-3xl p-8 relative overflow-hidden"
+      >
+        <div class="space-y-8">
+          <!-- YOUR INFO -->
+          <div class="flex items-center space-x-4 text-white/70">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center">
+              <span class="text-sm">1</span>
+            </div>
+            <div>
+              <p class="text-xs opacity-70">STEP 1</p>
+              <p class="text-sm font-bold">YOUR INFO</p>
+            </div>
+          </div>
+
+          <!-- SELECT PLAN -->
+          <div class="flex items-center space-x-4 text-white/70">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center">
+              <span class="text-sm">2</span>
+            </div>
+            <div>
+              <p class="text-xs opacity-70">STEP 2</p>
+              <p class="text-sm font-bold">SELECT PLAN</p>
+            </div>
+          </div>
+
+          <!-- ADD-ONS -->
+          <div class="flex items-center space-x-4 text-white/70">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center">
+              <span class="text-sm">3</span>
+            </div>
+            <div>
+              <p class="text-xs opacity-70">STEP 3</p>
+              <p class="text-sm font-bold">ADD-ONS</p>
+            </div>
+          </div>
+
+          <!-- SUMMARY - Active -->
+          <div class="flex items-center space-x-4 text-white">
+            <div
+              class="w-8 h-8 rounded-full border-2 flex items-center justify-center"
+            >
+              <span class="text-sm">4</span>
+            </div>
+            <div>
+              <p class="text-xs opacity-70">STEP 4</p>
+              <p class="text-sm font-bold">SUMMARY</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decorative shapes -->
+        <div
+          class="absolute bottom-0 right-0 transform translate-x-1/2 translate-y-1/2"
+        >
+          <div class="w-32 h-32 bg-pink-400 rounded-full opacity-20"></div>
+        </div>
+        <div class="absolute -bottom-20 -left-20">
+          <div class="w-40 h-40 bg-orange-400 rounded-full opacity-20"></div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="flex-1 p-10">
+        <div class="max-w-lg">
+          <h2 class="text-2xl font-bold text-gray-900 mb-2">Finishing up</h2>
+          <p class="text-gray-500 mb-8">
+            Double-check everything looks OK before confirming.
+          </p>
+
+          <!-- Summary Box -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <!-- Selected Plan -->
+            <div
+              class="flex justify-between items-center pb-6 border-b border-gray-200"
+            >
+              <div>
+                <h3 class="font-medium text-gray-900" id="selected-plan-name">
+                  Arcade (Monthly)
+                </h3>
+                <button
+                  class="text-sm text-gray-500 underline hover:text-indigo-600"
+                  onclick="window.location.href='select-plan.html'"
+                >
+                  Change
+                </button>
+              </div>
+              <span class="font-medium text-gray-900" id="selected-plan-price"
+                >$9/mo</span
+              >
+            </div>
+
+            <!-- Selected Add-ons -->
+            <div class="py-4 space-y-4" id="selected-addons">
+              <!-- Add-ons will be inserted here by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Total -->
+          <div class="flex justify-between items-center p-6">
+            <span class="text-gray-500" id="total-label"
+              >Total (per month)</span
+            >
+            <span class="text-2xl font-bold text-indigo-600" id="total-price"
+              >+$12/mo</span
+            >
+          </div>
+
+          <!-- Navigation -->
+          <div class="flex justify-between items-center mt-8">
+            <button
+              onclick="window.location.href='add-ons.html'"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              Go Back
+            </button>
+            <button
+              onclick="window.location.href='thank-you.html'"
+              class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Get billing cycle
+        const isYearly = localStorage.getItem("billingCycle") === "yearly";
+
+        // Load selected plan
+        const selectedPlan = JSON.parse(
+          localStorage.getItem("selectedPlan") || "{}"
+        );
+        const planNameElement = document.getElementById("selected-plan-name");
+        const planPriceElement = document.getElementById("selected-plan-price");
+
+        if (selectedPlan.name) {
+          planNameElement.textContent = `${selectedPlan.name} (${
+            isYearly ? "Yearly" : "Monthly"
+          })`;
+          planPriceElement.textContent = selectedPlan.price;
+        }
+
+        // Load selected add-ons
+        const selectedAddons = JSON.parse(
+          localStorage.getItem("selectedAddons") || "[]"
+        );
+        const addonsContainer = document.getElementById("selected-addons");
+
+        selectedAddons.forEach((addon) => {
+          const addonElement = document.createElement("div");
+          addonElement.className = "flex justify-between items-center";
+          addonElement.innerHTML = `
+                    <span class="text-gray-500">${addon.name}</span>
+                    <span class="text-gray-700">${addon.price}</span>
+                `;
+          addonsContainer.appendChild(addonElement);
+        });
+
+        // Calculate and update total
+        const totalLabel = document.getElementById("total-label");
+        const totalPrice = document.getElementById("total-price");
+
+        function calculateTotal() {
+          let total = parseInt(selectedPlan.price.replace(/\D/g, ""));
+          selectedAddons.forEach((addon) => {
+            total += parseInt(addon.price.replace(/\D/g, ""));
+          });
+
+          totalLabel.textContent = `Total (per ${isYearly ? "year" : "month"})`;
+          totalPrice.textContent = `$${total}/${isYearly ? "yr" : "mo"}`;
+        }
+
+        calculateTotal();
+      });
+    </script>
+  </body>
+</html>

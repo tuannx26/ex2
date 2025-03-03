@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pick add-ons</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom checkbox style */
+      .addon-checkbox {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        position: relative;
+        cursor: pointer;
+      }
+      .addon-checkbox.checked {
+        background-color: #4f46e5;
+        border-color: #4f46e5;
+      }
+      .addon-checkbox.checked::after {
+        content: "✓";
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white rounded-3xl shadow-lg flex w-[800px]">
+      <!-- Sidebar -->
+      <div
+        class="w-[274px] bg-gradient-to-b from-indigo-600 to-indigo-700 rounded-3xl p-8 relative overflow-hidden"
+      >
+        <div class="space-y-8">
+          <!-- YOUR INFO -->
+          <div class="flex items-center space-x-4 text-white/70">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center">
+              <span class="text-sm">1</span>
+            </div>
+            <div>
+              <p class="text-xs opacity-70">STEP 1</p>
+              <p class="text-sm font-bold">YOUR INFO</p>
+            </div>
+          </div>
+
+          <!-- SELECT PLAN -->
+          <div class="flex items-center space-x-4 text-white/70">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center">
+              <span class="text-sm">2</span>
+            </div>
+            <div>
+              <p class="text-xs opacity-70">STEP 2</p>
+              <p class="text-sm font-bold">SELECT PLAN</p>
+            </div>
+          </div>
+
+          <!-- ADD-ONS - Active -->
+          <div class="flex items-center space-x-4 text-white">
+            <div
+              class="w-8 h-8 rounded-full border-2 flex items-center justify-center"
+            >
+              <span class="text-sm">3</span>
+            </div>
+            <div>
+              <p class="text-xs opacity-70">STEP 3</p>
+              <p class="text-sm font-bold">ADD-ONS</p>
+            </div>
+          </div>
+
+          <!-- SUMMARY -->
+          <div class="flex items-center space-x-4 text-white/70">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center">
+              <span class="text-sm">4</span>
+            </div>
+            <div>
+              <p class="text-xs opacity-70">STEP 4</p>
+              <p class="text-sm font-bold">SUMMARY</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decorative shapes -->
+        <div
+          class="absolute bottom-0 right-0 transform translate-x-1/2 translate-y-1/2"
+        >
+          <div class="w-32 h-32 bg-pink-400 rounded-full opacity-20"></div>
+        </div>
+        <div class="absolute -bottom-20 -left-20">
+          <div class="w-40 h-40 bg-orange-400 rounded-full opacity-20"></div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="flex-1 p-10">
+        <div class="max-w-lg">
+          <h2 class="text-2xl font-bold text-gray-900 mb-2">Pick add-ons</h2>
+          <p class="text-gray-500 mb-8">
+            Add-ons help enhance your gaming experience.
+          </p>
+
+          <!-- Add-ons Options -->
+          <div class="space-y-4">
+            <!-- Online Service -->
+            <div
+              class="border border-gray-200 rounded-lg p-4 hover:border-indigo-500 transition-all flex items-center cursor-pointer addon-item"
+            >
+              <div class="addon-checkbox mr-4"></div>
+              <div class="flex-1">
+                <h3 class="font-medium text-gray-900">Online service</h3>
+                <p class="text-sm text-gray-500">Access to multiplayer games</p>
+              </div>
+              <p
+                class="text-sm text-indigo-600 price"
+                data-monthly="1"
+                data-yearly="10"
+              >
+                +$1/mo
+              </p>
+            </div>
+
+            <!-- Larger Storage -->
+            <div
+              class="border border-gray-200 rounded-lg p-4 hover:border-indigo-500 transition-all flex items-center cursor-pointer addon-item"
+            >
+              <div class="addon-checkbox mr-4"></div>
+              <div class="flex-1">
+                <h3 class="font-medium text-gray-900">Larger storage</h3>
+                <p class="text-sm text-gray-500">Extra 1TB of cloud save</p>
+              </div>
+              <p
+                class="text-sm text-indigo-600 price"
+                data-monthly="2"
+                data-yearly="20"
+              >
+                +$2/mo
+              </p>
+            </div>
+
+            <!-- Customizable Profile -->
+            <div
+              class="border border-gray-200 rounded-lg p-4 hover:border-indigo-500 transition-all flex items-center cursor-pointer addon-item"
+            >
+              <div class="addon-checkbox mr-4"></div>
+              <div class="flex-1">
+                <h3 class="font-medium text-gray-900">Customizable profile</h3>
+                <p class="text-sm text-gray-500">
+                  Custom theme on your profile
+                </p>
+              </div>
+              <p
+                class="text-sm text-indigo-600 price"
+                data-monthly="2"
+                data-yearly="20"
+              >
+                +$2/mo
+              </p>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="flex justify-between items-center mt-20">
+            <button
+              onclick="window.location.href='select-plan.html'"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              Go Back
+            </button>
+            <button
+              onclick="window.location.href='summary.html'"
+              class="px-6 py-3 bg-indigo-900 text-white rounded-lg hover:bg-indigo-800"
+            >
+              Next Step
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Check billing cycle from localStorage (set in select-plan.html)
+      function updatePrices() {
+        const isYearly = localStorage.getItem("billingCycle") === "yearly";
+        const prices = document.querySelectorAll(".price");
+
+        prices.forEach((price) => {
+          const monthlyPrice = price.getAttribute("data-monthly");
+          const yearlyPrice = price.getAttribute("data-yearly");
+
+          if (isYearly) {
+            price.textContent = `+$${yearlyPrice}/yr`;
+          } else {
+            price.textContent = `+$${monthlyPrice}/mo`;
+          }
+        });
+      }
+
+      // Handle add-on selection
+      const addonItems = document.querySelectorAll(".addon-item");
+
+      addonItems.forEach((item) => {
+        item.addEventListener("click", function () {
+          const checkbox = this.querySelector(".addon-checkbox");
+          const isSelected = checkbox.classList.contains("checked");
+
+          // Toggle checkbox
+          if (isSelected) {
+            checkbox.classList.remove("checked");
+            this.classList.remove("border-indigo-500");
+            this.classList.add("border-gray-200");
+          } else {
+            checkbox.classList.add("checked");
+            this.classList.add("border-indigo-500");
+            this.classList.remove("border-gray-200");
+          }
+
+          // Save selected add-ons
+          saveSelectedAddons();
+        });
+      });
+
+      // Save selected add-ons to localStorage
+      function saveSelectedAddons() {
+        const selectedAddons = [];
+        addonItems.forEach((item) => {
+          if (
+            item.querySelector(".addon-checkbox").classList.contains("checked")
+          ) {
+            selectedAddons.push({
+              name: item.querySelector("h3").textContent,
+              price: item.querySelector(".price").textContent,
+            });
+          }
+        });
+        localStorage.setItem("selectedAddons", JSON.stringify(selectedAddons));
+      }
+
+      // Load previously selected add-ons
+      function loadSelectedAddons() {
+        const savedAddons = JSON.parse(
+          localStorage.getItem("selectedAddons") || "[]"
+        );
+        addonItems.forEach((item) => {
+          const name = item.querySelector("h3").textContent;
+          if (savedAddons.some((addon) => addon.name === name)) {
+            item.querySelector(".addon-checkbox").classList.add("checked");
+            item.classList.add("border-indigo-500");
+            item.classList.remove("border-gray-200");
+          }
+        });
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", () => {
+        updatePrices();
+        loadSelectedAddons();
+      });
+    </script>
+  </body>
+</html>
